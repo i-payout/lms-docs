@@ -14,6 +14,7 @@
     "darkModeMainColor": "#0f75bc",
     "navbarColor": "#FFFFFF",
     "navbarDarkModeColor": "#000000",
+    "backgroundDarkModeColor": "000000",
     "pagination": false,
     "logoSize": "large"
   },
