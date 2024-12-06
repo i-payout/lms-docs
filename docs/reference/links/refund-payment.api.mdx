@@ -1,0 +1,647 @@
+---
+id: refund-payment
+title: "Refund a Payment"
+description: "This endpoint refunds a previously captured payment by providing the necessary refund details, including the amount to be refunded."
+sidebar_label: "Refund a Payment"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: \reference\links/links-api
+custom_edit_url: null
+proxy: https://proxy.writechoice.io/
+---
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Refund a Payment"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/payments/{identifier}/refund"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint refunds a previously captured payment by providing the necessary refund details, including the amount to be refunded.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<details
+  style={{"marginBottom":"1rem"}}
+  className={"openapi-markdown__details"}
+  data-collapsed={false}
+  open={true}
+>
+  <summary
+    style={{}}
+  >
+    <h3
+      className={"openapi-markdown__details-summary-header-params"}
+    >
+      Path Parameters
+    </h3>
+  </summary><div>
+    <ul>
+      <ParamsItem
+        className={"paramsItem"}
+        param={{"name":"identifier","in":"path","required":true,"schema":{"type":"string","description":"The unique identifier of the payment to be refunded.","nullable":true}}}
+      >
+        
+      </ParamsItem>
+    </ul>
+  </div>
+</details><MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"refundedAlreadyAtProcessor"}
+          required={false}
+          schemaName={"boolean"}
+          qualifierMessage={undefined}
+          schema={{"type":"boolean","description":"Indicates if the refund has already been processed by the payment processor."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"amount"}
+          required={false}
+          schemaName={"double"}
+          qualifierMessage={undefined}
+          schema={{"type":"number","format":"double","description":"The amount to be refunded."}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A successful response indicating the payment was refunded.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result of the refund request, including status and any relevant messages.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"merchantIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the merchant associated with the payment.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"amount"}
+                        required={false}
+                        schemaName={"double"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"number","format":"double","description":"The refunded amount."}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"currencyCode"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The three-letter currency code (ISO 4217) for the refund.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"acquirer"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The name of the acquirer processing the refund.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"customerIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the customer associated with the refund.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"customerReference"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"A reference provided by the merchant to identify the customer.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"merchantOrderId"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the merchant's order.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"paymentMethodIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the payment method used for the refund.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"paymentIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the refunded payment.","nullable":true}}
+                      >
+                        
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  },\n  \"merchantIdentifier\": \"string\",\n  \"amount\": 0,\n  \"currencyCode\": \"string\",\n  \"acquirer\": \"string\",\n  \"customerIdentifier\": \"string\",\n  \"customerReference\": \"string\",\n  \"merchantOrderId\": \"string\",\n  \"paymentMethodIdentifier\": \"string\",\n  \"paymentIdentifier\": \"string\"\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          The request is invalid or contains incorrect parameters.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result object that contains the outcome and additional details of the API request.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"401"}
+        value={"401"}
+      >
+        <div>
+          
+          
+          Unauthorized request. Authentication is required.
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"403"}
+        value={"403"}
+      >
+        <div>
+          
+          
+          Access is forbidden due to insufficient permissions.
+          
+          
+        </div><div>
+          
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          The specified payment was not found.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result object that contains the outcome and additional details of the API request.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

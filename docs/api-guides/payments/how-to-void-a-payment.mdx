@@ -1,0 +1,29 @@
+---
+title: How to Void a Payment
+slug: /how-to-void-a-payment
+description: Learn how to void a payment.
+---
+
+This guide explains how to **Void a Payment**, which allows you to void a previously authorized payment before it has been captured. Voiding a payment cancels the transaction and prevents it from being processed.
+
+## Prerequisites
+
+Before calling the void payment endpoint, ensure the following:
+
+- The payment you want to void has been authorized but not yet captured.
+- You have the unique payment identifier of the transaction to void.
+
+## Void a Payment
+
+To void a payment, you will use the [Void a Payment](/reference/links/void-payment) endpoint, adding the following path parameter:
+
+- `payment_identifier`: The unique identifier of the payment to be voided.
+
+Below you find an example request to void a payment:
+
+```sh
+curl --request POST \
+--url https://testapi.linksmerchantservices.com/api/payments/<payment_identifier>/void \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>'
+```

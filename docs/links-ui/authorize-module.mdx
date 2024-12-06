@@ -1,0 +1,163 @@
+---
+title: Authorize Module
+slug: /authorize-module
+description: Learn how to integrate the authorize UI component.
+---
+
+This page guides you through every necessary step to integrate the Authorize Module into your app or website.
+
+## Custom Tag
+
+The UI Component will be rendered in the `<lms>` custom tag. This tag is required as it initializes the component. You need to place the tag inside your HTML, which can be placed wherever you want.
+
+```html
+<lms></lms>
+```
+
+## Script Install
+
+With the custom tag covered, you need to add the component's script to your HTML. You can do this two different ways:
+
+- [Static Script](#static-script)
+- [Dynamic Script](#dynamic-script)
+
+<Callout type="info" title="Script tag">
+  You must add the script tag after the `<lms>` tag.
+</Callout>
+
+### Static Script
+
+Add the following to load each component with a static script:
+
+```html
+<script defer="defer" src="authorize.bundle.js"></script>
+```
+
+### Dynamic Script
+
+```html
+<script>
+
+  let authModuleScript = document.createElement('script');
+
+  //authorize.bundle.js src File path
+  authModuleScript.src = 'authorize.bundle.js';
+  
+  authModuleScript.defer = 'defer';
+
+  //Container - Where you want to append the script. It can be body, head or any div.
+  let container = document.body;
+
+  container.appendChild(authModuleScript);
+
+</script>
+```
+
+## Configuration
+
+Now, you need to call the desired method, passing at least the required parameters. With this completed, the UI Component will be ready and displayed in your application.
+
+| **Prop Name**         | **Type** | **Description**                                                                          | **Default Value** | **Required** |
+|-----------------------|----------|------------------------------------------------------------------------------------------|-------------------|--------------|
+| `authToken`           | `string` | A JWT token required for authenticating the transaction.                                 | -                 | Yes          |
+| `customerReference`   | `string` | A unique reference or identifier for the customer.                                       | -                 | Yes          |
+| `merchantId`          | `string` | The unique identifier for the merchant associated with the transaction.                  | -                 | Yes          |
+| `amount`              | `number` | The monetary amount for the transaction.                                                 | -                 | Yes          |
+| `merchantOrderId`     | `string` | The unique order identifier or ID provided by the merchant.                              | -                 | Yes          |
+| `currencyCode`        | `string` | The currency code in which the transaction is processed, e.g., USD, INR, IDR, GBP, etc.  | `USD`             | Yes          |
+| `lang`                | `string` | The language code for localizing the transaction, e.g., EN for English.                  | `EN`              | No           |
+| `events`                | `object` | List of possible callout events to be triggered by the response.                       | -              | No           |
+| `styles`              | `object` | An object defining the style settings.                                                   | -                 | No           |
+| `labels`              | `object` | An object containing custom labels for the UI.                                           | -                 | No           |
+| `existingPaymentMethodsPage` | `object` | Customizations to the additional existing payment methods page.                   | -                 | No           |
+| `addNewCardPage`      | `object` | Customizations to the additional add new card page.                                      | -                 | No           |
+
+### Calling the API
+
+Below, you will find examples of how to use the required parameters:
+
+```js
+window.authorizePaymentConfig =  {
+  authToken: 'byuY5QTlEM0UtM0QzQi00RjdELTlGREUtNDE2OUYxQUJFREQ1OjFiM2I1NzhiLWMwYTctNGI5OC1hNjEyLWU4YTA4ZWJjZTY0Ng==',
+  customerReference: "123545745454",
+  merchantId: "ACVX458KJGJLAS7878DSADS",
+  amount: 40,
+  merchantOrderId: "ISH-999",
+  currencyCode: "USD",
+}
+```
+
+### API Response
+
+Following the payment, the API response will include the payment log informations. You'll need callback events in order to retrieve the api reponse. The code below exemplifies the JSON returned from the API:
+
+```json
+{
+  "merchantIdentifier": "af9a9d3e-3d3b-4f7d-9fds-4169f1abedd5",
+  "amount": "450.00",
+  "currencyCode": "USD",
+  "paymentStatus": "Captured",
+  "paymentMethodType": "CreditCard",
+  "acquirer": "CcMockProcessor",
+  "customerIdentifier": "ff6dfce1-1eb2-4586-befc-832fb2078f01",
+  "paymentIdentifier": "58cafacd-b112-459a-905f-5c8a3d29f1c7",
+  "merchantOrderId": "SMO-445",
+  "returnUrl": "",
+  "result": {
+    "resultType": "Accepted",
+    "merchantMessage": "",
+    "logIdentifier": "9c44f88b-0224-4633-aa65-31bd41800dff",
+    "logAsError": false
+  }
+}
+```
+
+## Retrieving the Response
+
+You can add a callback event to the API call to retrieve the payment information. For this, you need to add a callback function to the `onPayment` key of the events parameter of the call. The code below exemplifies this feature: 
+
+```html
+<body>
+    
+    <!--Container-->
+    <lms></lms>
+
+    <script id="authorize-payment-callback-event">
+
+    //The function onPaymentMade is a callback event that is passed to the bundle config in order to receive the payment informations. The function gets executed when the payment has been succeeded or failed.
+    const onPaymentMade = (error,response) => {
+      //the two parameters - error and response both are object and have same child properties - statusCode & message. statusCode contains the api response code and message contains the token and some additional informations. Response code is given in section-4(c)
+    
+    if(!error){
+      console.table(response);
+      //check api response in section-4(c) 
+    }
+    else
+    alert(error.statusCode + ' '+error.message);
+    }
+    
+  </script>
+
+  <!--Authorize Module Config-->
+  <script id="authorize-module-config">
+    window.authorizePaymentConfig  = {
+      authToken: 'byuY5QTlEM0UtM0QzQi00RjdELTlGREUtNDE2OUYxQUJFREQ1OjFiM2I1NzhiLWMwYTctNGI5OC1hNjEyLWU4YTA4ZWJjZTY0Ng==',
+      customerReference: "123545745454",
+      merchantId: "ACVX458KJGJLAS7878DSADS",
+      amount: 40,
+      merchantOrderId: "ISH-999",
+      currencyCode: "USD",
+      evenst: {
+          onPayment: onPaymentMade.bind(this) //passing callback-event in order to retrieve the payment informations.
+        }
+    }
+  </script>
+
+  <!--Authorize Module Bundle Script-->
+    <script defer="defer" src="authorize.bundle.js"></script>
+</body>
+```
+
+## Optional Parameters
+
+You can customize style and labels for the main page, as well as the two additional pages, Existing Payment Methods Page and Add New Card Page. Refer to the [Styles & Props](/authorize-module/styles-props) page for more details.

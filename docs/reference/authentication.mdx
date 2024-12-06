@@ -1,0 +1,62 @@
+---
+title: Authentication
+slug: /authentication
+description: Learn about authentication in LINKs API.
+---
+
+LINKs API offers two forms of authentication depending on the request type:
+
+<CardList cols={2}>
+
+<Card
+  title="Basic Authentication"
+  link="#basic-authentication"
+  icon="LockSimple"
+  iconType="duotone"
+  iconSize="32px"
+/>
+
+<Card
+  title="Client Token Authentication"
+  link="#client-token-authentication"
+  icon="Fingerprint"
+  iconType="duotone"
+  iconSize="32px"
+/>
+
+</CardList>
+
+<Callout type="warning" title="Keep your keys safe">
+  It is important to avoid sharing your credential in public places like Github
+  or Bitbucket since it can allow malicious API calls.
+</Callout>
+
+## Basic Authentication
+
+Basic Authentication requires a header with encoded credentials. Use your `ID` and `secret` joined by a colon (:) and [encoded in Base64 format](https://www.base64decode.org/). The code below exemplifies how to encode it:
+
+```sh
+echo -n '<ID>:<secret>' | base64
+```
+
+After encoding it, use the encoded string it results in the authorization header of your requests, like presented below:
+
+```sh
+curl --request <Method> \
+    --url <URL> \
+    --header 'accept: application/json' \
+    --header 'content-type: application/json' \
+    --header 'authorization: Basic <ENCODED_STRING>'
+```
+
+## Client Token Authentication
+
+Client tokens are one-time-use passwords generated server-side using Basic Authentication. The token is then used in requests as:
+
+```sh
+curl --request <Method> \
+    --url <URL> \
+    --header 'accept: application/json' \
+    --header 'content-type: application/json' \
+    --header 'authorization: X-Api-Key <client_token>'
+```

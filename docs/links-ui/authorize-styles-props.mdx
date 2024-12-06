@@ -1,0 +1,327 @@
+---
+title: Styles & Props
+slug: /authorize-module/styles-props
+description: Learn how to customize the authorize UI component.
+---
+
+You can customize the Authorize Module to integrate better with your website's design style. For this, you can use the optional parameters `style` and `labels` when calling the `window.authorizePaymentConfig` function.
+
+<CardList cols={3}>
+<Card
+  title="Main Page"
+  link="#main-page"
+/>
+
+<Card
+  title="Existing Payment Methods Page"
+  link="#existing-payment-methods-page"
+/>
+
+<Card
+  title="Add New Card Page"
+  link="#add-new-card-page"
+/>
+</CardList>
+
+## Main Page
+
+You can customize the following properties in your main page:
+
+### Labels
+
+| **Property**           | **Type**  | **Description**                                                    | **Default Value**                |
+|-------------------------|-----------|--------------------------------------------------------------------|----------------------------------|
+| `widgetHeaderTitle`      | `string`  | The title displayed in the header of the widget container.          | `Manage Payment Methods`         |
+| `paymentMethodOptions`   | `array`   | An array of tab labels for selecting payment methods.               | `["Pay with saved card", "Pay with saved card"]` |
+
+
+### Styles
+
+| **Prop Name**           | **Description**                                                         |
+|-------------------------|-------------------------------------------------------------------------|
+| `widgetContainer`        | The main container or wrapper for the entire widget.                    |
+| `widgetHeader`           | The header section of the widget, which includes the title.             |
+| `widgetHeaderTitle`      | The text for the widget's header title.                                 |
+| `tabsContainer`          | The container that holds the tab options for different payment methods. |
+| `tabItem`                | Individual tab items, such as "Pay with saved card" and "Pay with new card". |
+
+
+Each property above must receive an object as the value. This value can contain style and cssClass keys:
+
+| **Key**     | **Type** | **Description**                                                                      |
+|-------------|----------|--------------------------------------------------------------------------------------|
+| `style`     | `object` | An object containing valid CSS styles that will be applied to the HTML element.      |
+| `cssClass`  | `string` | A class name to be added to the HTML element, allowing for custom styling via CSS.   |
+
+### Example Usage
+
+The following code block exemplifies the use of this parameters in your function:
+
+```js
+window.authorizePaymentConfig = {
+  // Required configurations
+  ...
+  labels : {
+    widgetHeaderTitle: 'Manage Payment Method',
+    paymetMethodOptions: ['Page 1', 'Page 2']
+  },
+  styles: {
+    widgetContainer: { 
+      style: {
+        "background-color":"green",
+        "color": "blue"
+        },
+        cssClass: "text-danger bg-light" 
+      },
+    widgetHeader: { 
+      style: { 
+          display: "none" 
+      }, 
+      cssClass: "" 
+    }
+  }
+}
+```
+
+## Existing Payment Methods Page
+
+Use the following properties to configure styles and labels for your existing payment methods page:
+
+### Labels
+
+| **Prop Name**         | **Type**  | **Description**                                                             | **Default Value** |
+|-----------------------|-----------|-----------------------------------------------------------------------------|-------------------|
+| `loadingText`          | `string`  | The label text displayed while the API fetch is in progress.                 | `Loading`         |
+| `cardExpiry`           | `string`  | The label text for the card expiry date field.                               | `Valid Thru`      |
+| `cvvInputPlaceHolder`  | `string`  | The placeholder text for the CVV input field.                                | `CVV`             |
+| `payButton`            | `string`  | The label text for the pay button.                                           | `Pay Now`         |
+| `editIconTitle`        | `string`  | The tooltip text displayed when hovering over the edit button.               | `Edit`            |
+| `deleteIconTitle`      | `string`  | The tooltip text displayed when hovering over the delete button.             | `Delete`          |
+
+### Styles
+
+| **Prop Name**           | **Description**                                                 |
+|-------------------------|-----------------------------------------------------------------|
+| `widgetContainer`        | The main wrapper or container for the entire page widget.       |
+| `loadingText`            | The text displayed while the loader is active.                  |
+| `listContainer`          | The container for the list of saved cards.                     |
+| `listItem`               | Individual item representing a saved card in the list.          |
+| `listSelectionRadio`     | The radio button for selecting a saved card from the list.      |
+| `cardHolderName`         | The name of the cardholder displayed on the card.               |
+| `cardNumber`             | The number of the saved card.                                   |
+| `cardExpiry`             | The expiry date of the saved card.                              |
+| `cvvInput`               | The text input field for entering the card's CVV code.          |
+| `payButton`              | The button labeled "Pay Now" to submit the payment.             |
+| `editIconWrapper`        | The container for the edit icon.                                |
+| `editIcon`               | The icon used for editing the card details.                     |
+| `deleteIconWrapper`      | The container for the delete icon.                              |
+| `deleteIcon`             | The icon used for deleting a saved card.                        |
+
+
+## Add New Card Page
+
+Use the following properties to configure styles and labels, and also events for the add new card page:
+
+### Labels
+
+| **Prop Name**                      | **Type**  | **Description**                                                                                  | **Default Value**                  |
+|------------------------------------ |-----------|--------------------------------------------------------------------------------------------------|------------------------------------|
+| `mandatoryFieldsCaption`            | `string`  | The label displayed at the top of the form, indicating mandatory fields.                          | `* Marks Fields are mandatory`     |
+| `cardInformationHeaderLabel`        | `string`  | The label for the "Card Information" section of the form.                                         | `Card Information`                 |
+| `cardHolderName`                    | `string`  | The label for the cardholder name input field.                                                    | `Card Holder Name`                 |
+| `cardNumber`                        | `string`  | The label for the card number input field.                                                        | `Card Number`                      |
+| `cardExpiration`                    | `string`  | The label for the card expiration date input field.                                               | `Card Expiration`                  |
+| `cvv`                               | `string`  | The label for the CVV input field.                                                                | `CVV`                              |
+| `billingInformationHeaderLabel`     | `string`  | The label for the "Billing Information" section of the form.                                      | `Billing Information`              |
+| `country`                           | `string`  | The label for the country selection input field.                                                  | `Country`                          |
+| `state`                             | `string`  | The label for the state selection input field.                                                    | `State`                            |
+| `address1`                          | `string`  | The label for the first address input field.                                                      | `Address 1`                        |
+| `address2`                          | `string`  | The label for the second address input field.                                                     | `Address 2`                        |
+| `city`                              | `string`  | The label for the city input field.                                                               | `City`                             |
+| `zipCode`                           | `string`  | The label for the zip code input field.                                                           | `Zip Code`                         |
+| `updateButton`                      | `string`  | The label for the update button.                                                                  | `Update`                           |
+| `payButton`                         | `string`  | The label for the pay button.                                                                     | `Pay`                              |
+| `validationMessages`                | `object`  | Allows you to override the default validation error messages, with a structure discussed in section 4(b). | N/A                          |
+
+
+### Styles
+
+| **Prop Name**              | **Description**                                                                |
+|----------------------------|--------------------------------------------------------------------------------|
+| `mandatoryFieldsCaption`    | The label at the top of the form indicating mandatory fields.                  |
+| `sectionHeader`             | The header label for form sections like "Card Information" and "Billing Information". |
+| `label`                     | The labels for form inputs or dropdowns (e.g., Card Holder Name, CVV, etc.).   |
+| `input`                     | Text input fields in the form (e.g., Card Holder Name, CVV, etc.).             |
+| `dropdown`                  | Dropdown fields in the form (e.g., Country, Card expiry dropdown, etc.).       |
+| `validationMessages`        | The text for validation error messages displayed during form submission.       |
+| `payButton`                 | The label for the "Pay Now" button.                                            |
+| `updateButton`              | The label for the "Update" button.                                             |
+
+
+### Events
+
+The add new card page allows you to add a callback event on completion to return the new added credit card information to you.
+
+| **Available Callback Events** | **Description**                                                      |
+|-------------------------------|----------------------------------------------------------------------|
+| `onComplete`                   | Triggered when the process is complete, returning updated credit card information. |
+
+## Full Code Example
+
+The code block below presents a complete example with all available parameters for the `window.authorizePaymentConfig` function:
+
+<Accordion title="Example">
+```js
+window.authorizePaymentConfig =  {
+  authToken: 'byuY5QTlEM0UtM0QzQi00RjdELTlGREUtNDE2OUYxQUJFREQ1OjFiM2I1NzhiLWMwYTctNGI5OC1hNjEyLWU4YTA4ZWJjZTY0Ng==',
+  customerReference: "123545745454",
+  merchantId: "ACVX458KJGJLAS7878DSADS",
+  amount: 40,
+  merchantOrderId: "ISH-999",
+  currencyCode: "USD",
+
+  //Root or Main Page Styles and Labels
+  labels : {
+    widgetHeaderTitle: 'Manage Payment Method',
+    paymentMethodOptions: ['Pay with saved card', 'Pay with new card']
+  },
+  styles: {
+    widgetContainer: { 
+      style: { 
+        "background-color": "#f9f9f9", 
+        "padding": "20px" 
+      }, 
+      cssClass: "widget-container-class" 
+    },
+    widgetHeaderTitle: {
+      cssClass: "header-title-class",
+      style: {
+        "font-size": "150%",
+        "font-style": "italic",
+        color: "teal",
+      },
+    },
+    tabsContainer: { 
+      style: { 
+        "border-bottom": "1px solid #ccc" 
+      }, 
+      cssClass: "tabs-container-class" 
+    },
+    tabItem: {
+      style: { 
+        "padding": "10px", 
+        "cursor": "pointer" 
+      }, 
+      cssClass: "tab-item-class" 
+    }
+  },
+
+  // Existing Payment Methods Page Config
+  existingPaymentMethodsPage: {
+    labels: {
+      loadingText: 'Loading...',
+      cardExpiry: 'Valid Thru',
+      cvvInputPlaceHolder: 'CVV',
+      payButton: 'Pay Now',
+      editIconTitle: 'Edit',
+      deleteIconTitle: 'Delete'
+    },
+    styles: {
+      listContainer: {
+        style: { 
+          "margin-top": "20px" 
+        }, 
+        cssClass: "list-container-class" 
+      },
+      listItem: {
+        style: { 
+          "padding": "15px", 
+          "border-bottom": "1px solid #ddd" 
+        },
+        cssClass: "list-item-class"
+      },
+      cvvInput: {
+        style: { 
+          "width": "100px" 
+        },
+        cssClass: "cvv-input-class"
+      },
+      payButton: {
+        style: {
+          "background-color": "#28a745",
+          "color": "#fff",
+          "border": "none",
+          "padding": "10px 20px",
+          "cursor": "pointer",
+          "border-radius": "4px"
+        },
+        cssClass: "pay-button-class"
+      }
+    }
+  },
+
+  //Add New Card Page Config
+  addNewCardPage: {
+    uiConfig: { 
+      showCardImage: false, 
+      showBillingInfo: true 
+    },
+    labels: {
+      cardInformationHeaderLabel: 'Card Information',
+      billingInformationHeaderLabel: 'Billing Information',
+      cardHolderName: 'Card Holder Name',
+      cardNumber: 'Card Number',
+      cardExpiration: 'Card Expiration',
+      cvv: 'CVV',
+      country: 'Country',
+      state: 'State',
+      address1: 'Address 1',
+      address2: 'Address 2',
+      city: 'City',
+      zipCode: 'Zip Code',
+      updateButton: 'Update',
+      payButton: 'Pay Now'
+    },
+    styles: {
+      input: {
+        style: {
+          'border': "2px dashed cyan",
+          'padding': "10px",
+          'border-radius': "4px"
+        },
+        cssClass: "input-class"
+      },
+      sectionHeader: {
+        cssClass: "section-header-class",
+        style: { 
+          color: 'purple', 
+          'font-weight': 'bold' 
+        }
+      },
+      validationFailedMessage: {
+        style: {
+          'color': 'red',
+          'font-size': '14px'
+        },
+        cssClass: "validation-message-class"
+      }
+    },
+    validationMessages: {
+      cardHolderName: "Card Holder Name is required",
+      cardNumber: "Invalid Card Number",
+      cardExpiration: "Card Expiration Date is required",
+      cvv: "CVV is required",
+      country: "Country is required",
+      address1: "Address 1 is required",
+      city: "City is required",
+      zipCode: "Invalid Zip Code"
+    },
+    events: {
+      onComplete: function(cardDetails) {
+        console.log("Card details submitted: ", cardDetails);
+      }
+    }
+  }
+}
+```
+</Accordion>

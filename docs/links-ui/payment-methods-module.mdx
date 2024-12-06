@@ -1,0 +1,81 @@
+---
+title: Payment Methods Module
+slug: /payment-methods-module
+description: Learn how to integrate the payment methods UI component.
+---
+
+This page guides you through every necessary step to integrate the Payment Methods Module into your app or website.
+
+## Custom Tag
+
+The UI Component will be rendered in the `<lms>` custom tag. This tag is required as it initializes the component. You need to place the tag inside your HTML, which can be placed wherever you want.
+
+```html
+<lms></lms>
+```
+
+## Script Install
+
+With the custom tag covered, you need to add the component's script to your HTML. You can do this two different ways:
+
+- [Static Script](#static-script)
+- [Dynamic Script](#dynamic-script)
+
+<Callout type="info" title="Script tag">
+  You must add the script tag after the `<lms>` tag.
+</Callout>
+
+### Static Script
+
+Add the following to load each component with a static script:
+
+```html
+<script defer="defer" src="paymentMethods.bundle.js"></script>
+```
+
+### Dynamic Script
+
+```html
+<script>
+
+  let paymentMethodsScript = document.createElement('script');
+
+  //paymentMethods.bundle.js src file path
+  paymentMethodsScript.src = 'paymentMethods.bundle.js';
+  
+  paymentMethodsScript.defer = 'defer';
+
+  //Container - Where you want to append the script. It can be body, head or any div.
+  let container = document.body;
+
+  container.appendChild(paymentMethodsScript);
+
+</script>
+```
+
+## Configuration
+
+Now, you need to call the desired method, passing at least the required parameters. With this completed, the UI Component will be ready and displayed in your application.
+
+| **Prop Name**         | **Type** | **Description**                                                                          | **Default Value** | **Required** |
+|-----------------------|----------|------------------------------------------------------------------------------------------|-------------------|--------------|
+| `token`               | `string` | A JWT token required for authenticating the transaction.                                 | -                 | Yes          |
+| `customerReference`   | `string` | A unique reference or identifier for the customer.                                       | -                 | Yes          |
+| `events`                | `object` | List of possible callout events to be triggered by the response.                       | -              | No           |
+| `styles`              | `object` | An object defining the style settings.                                                   | -                 | No           |
+| `labels`              | `object` | An object containing custom labels for the UI.                                           | -                 | No           |
+
+### Calling the API
+
+Below, you will find examples of how to use the required parameters:
+
+```js
+window.listOfpaymentMethodsConfig = {
+  token: 'byuY5QTlEM0UtM0QzQi00RjdELTlGREUtNDE2OUYxQUJFREQ1OjFiM2I1NzhiLWMwYTctNGI5OC1hNjEyLWU4YTA4ZWJjZTY0Ng=='
+  customerReference: "123545745454",
+}
+```
+
+## Optional Parameters
+
+You can customize style and labels for the Payment Methods pages. Refer to the [Styles & Props](/payment-methods-module/styles-props) page for more details.

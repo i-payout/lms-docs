@@ -1,0 +1,153 @@
+---
+id: links-api
+title: "LINKs API"
+description: ""
+sidebar_label: Introduction
+sidebar_position: 0
+hide_title: true
+custom_edit_url: null
+---
+
+<span
+  className={"theme-doc-version-badge badge badge--secondary"}
+  children={"Version: v1"}
+>
+</span>
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"LINKs API"}
+>
+</Heading>
+
+<div
+  style={{"marginBottom":"2rem"}}
+>
+  <Heading
+    id={"authentication"}
+    as={"h2"}
+    className={"openapi-tabs__heading"}
+    children={"Authentication"}
+  >
+  </Heading><SchemaTabs
+    className={"openapi-tabs__security-schemes"}
+  >
+    <TabItem
+      label={"HTTP: Basic Auth"}
+      value={"Basic"}
+    >
+      
+      
+      In **Basic HTTP authentication**, a request contains a header field in the form of `Authorization: Basic 'credentials'`, where `'credentials'` is the **Base64** encoding of `'ID'` and `'secret'` joined by a single colon `':'`.
+      
+      
+      
+      For example, to authorize as `demo / p@55w0rd` the client would send:
+      
+      
+      
+      ```bash
+      
+      Authorization: Basic ZGVtbzpwQDU1dzByZA==
+      
+      ```
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                basic
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem><TabItem
+      label={"Client Token"}
+      value={"Client Token"}
+    >
+      
+      
+      A `client token` is a one time use password. Your server is responsible for generating the **client token** using `Basic` authentication. When your server provides a `client token` to your client, it is used to authenticate the request.
+      
+      
+      
+      For example, to authorize the `'2dd972cc-05e6-4a9b-8885-d51e8e1083c6'` (server side generated **client token**) the client would send:
+      
+      
+      
+      ```bash
+      
+      Authorization: X-Api-Key 2dd972cc-05e6-4a9b-8885-d51e8e1083c6
+      
+      ```
+      
+      <div>
+        <table>
+          <tbody>
+            <tr>
+              <th>
+                Security Scheme Type:
+              </th><td>
+                http
+              </td>
+            </tr><tr>
+              <th>
+                HTTP Authorization Scheme:
+              </th><td>
+                x-api-key
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </TabItem>
+  </SchemaTabs>
+</div><div
+  style={{"display":"flex","flexDirection":"column","marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Contact
+  </h3><span>
+    LINKS Merchant Services, Inc: [discover@linksmerchantservices.com](mailto:discover@linksmerchantservices.com)
+  </span><span>
+    URL: [https://linksmerchantservices.com](mailto:https://linksmerchantservices.com)
+  </span>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    Terms of Service
+  </h3><a
+    href={"https://linksmerchantservices.com/"}
+  >
+    https://linksmerchantservices.com/
+  </a>
+</div><div
+  style={{"marginBottom":"var(--ifm-paragraph-margin-bottom)"}}
+>
+  <h3
+    style={{"marginBottom":"0.25rem"}}
+  >
+    License
+  </h3><a
+    href={"https://en.wikipedia.org/wiki/End-user_license_agreement"}
+  >
+    EULA
+  </a>
+</div>
+      

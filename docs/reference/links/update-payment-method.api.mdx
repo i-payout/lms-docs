@@ -1,0 +1,947 @@
+---
+id: update-payment-method
+title: "Update a Payment Method"
+description: "This endpoint allows updating an existing payment method by providing the necessary details such as payment method type, card information, and billing details. The `merchantIdentifier` and `paymentMethodIdentifier` are required to locate the payment method to update."
+sidebar_label: "Update a Payment Method"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "post api-method"
+info_path: \reference\links/links-api
+custom_edit_url: null
+proxy: https://proxy.writechoice.io/
+---
+
+<Heading
+  as={"h1"}
+  className={"openapi__heading"}
+  children={"Update a Payment Method"}
+>
+</Heading>
+
+<MethodEndpoint
+  method={"post"}
+  path={"/api/paymentmethod/update"}
+>
+  
+</MethodEndpoint>
+
+
+
+This endpoint allows updating an existing payment method by providing the necessary details such as payment method type, card information, and billing details. The `merchantIdentifier` and `paymentMethodIdentifier` are required to locate the payment method to update.
+
+<Heading
+  id={"request"}
+  as={"h2"}
+  className={"openapi-tabs__heading"}
+  children={"Request"}
+>
+</Heading>
+
+<MimeTabs
+  className={"openapi-tabs__mime"}
+>
+  <TabItem
+    label={"application/json"}
+    value={"application/json-schema"}
+  >
+    <details
+      style={{}}
+      className={"openapi-markdown__details mime"}
+      data-collapsed={false}
+      open={true}
+    >
+      <summary
+        style={{}}
+        className={"openapi-markdown__details-summary-mime"}
+      >
+        <h3
+          className={"openapi-markdown__details-summary-header-body"}
+        >
+          Body
+        </h3>
+      </summary><div
+        style={{"textAlign":"left","marginLeft":"1rem"}}
+      >
+        
+      </div><ul
+        style={{"marginLeft":"1rem"}}
+      >
+        <SchemaItem
+          collapsible={false}
+          name={"paymentMethodType"}
+          required={false}
+          schemaName={"string"}
+          qualifierMessage={undefined}
+          schema={{"type":"string","description":"The type of payment method, such as credit card or other forms of payment.","nullable":true}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <span
+                className={"openapi-schema__container"}
+              >
+                <strong
+                  className={"openapi-schema__property"}
+                >
+                  card
+                </strong><span
+                  className={"openapi-schema__name"}
+                >
+                   object
+                </span>
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              <div
+                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+              >
+                
+                
+                The credit card details associated with the payment method, if applicable.
+                
+                
+              </div><SchemaItem
+                collapsible={false}
+                name={"cardNumber"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"The credit card number. This field is optional and should be stored securely.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"expiryMonth"}
+                required={false}
+                schemaName={"int32"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","format":"int32","description":"The expiry month of the credit card."}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"expiryYear"}
+                required={false}
+                schemaName={"int32"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","format":"int32","description":"The expiry year of the credit card."}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"cardHolderName"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"The name of the cardholder as it appears on the credit card.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"cvv"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"The card verification value (CVV) for the credit card. This field is optional.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"creditCardBrand"}
+                required={false}
+                schemaName={"CreditCardTypes (string)"}
+                qualifierMessage={"**Possible values:** [`Unknown`, `MasterCard`, `Visa`, `Amex`, `Discover`, `JCB`]"}
+                schema={{"description":"The brand of the credit card, such as Visa or MasterCard.","enum":["Unknown","MasterCard","Visa","Amex","Discover","JCB"],"type":"string","title":"CreditCardTypes"}}
+              >
+                
+              </SchemaItem>
+            </div>
+          </details>
+        </SchemaItem><SchemaItem
+          collapsible={true}
+          className={"schemaItem"}
+        >
+          <details
+            style={{}}
+            className={"openapi-markdown__details"}
+          >
+            <summary
+              style={{}}
+            >
+              <span
+                className={"openapi-schema__container"}
+              >
+                <strong
+                  className={"openapi-schema__property"}
+                >
+                  billingInformation
+                </strong><span
+                  className={"openapi-schema__name"}
+                >
+                   object
+                </span>
+              </span>
+            </summary><div
+              style={{"marginLeft":"1rem"}}
+            >
+              <div
+                style={{"marginTop":".5rem","marginBottom":".5rem"}}
+              >
+                
+                
+                Billing address and contact information for the payment method.
+                
+                
+              </div><SchemaItem
+                collapsible={false}
+                name={"firstLine"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                schema={{"maxLength":100,"minLength":0,"type":"string","description":"The first line of the billing address.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"secondLine"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                schema={{"maxLength":100,"minLength":0,"type":"string","description":"The second line of the billing address.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"city"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                schema={{"maxLength":100,"minLength":0,"type":"string","description":"The city of the billing address.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"region"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                schema={{"maxLength":100,"minLength":0,"type":"string","description":"The region or state of the billing address.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"zipCode"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={"**Possible values:** `<= 20 characters`"}
+                schema={{"maxLength":20,"minLength":0,"type":"string","description":"The postal or ZIP code of the billing address.","nullable":true}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"countryAlpha3Code"}
+                required={false}
+                schemaName={"string"}
+                qualifierMessage={undefined}
+                schema={{"type":"string","description":"The three-letter country code (ISO Alpha-3) for the billing address."}}
+              >
+                
+              </SchemaItem><SchemaItem
+                collapsible={false}
+                name={"countryId"}
+                required={false}
+                schemaName={"int64"}
+                qualifierMessage={undefined}
+                schema={{"type":"integer","format":"int64","description":"The unique identifier for the country."}}
+              >
+                
+              </SchemaItem>
+            </div>
+          </details>
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"merchantIdentifier"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** Value must match regular expression `^(\\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}{0,1})$`"}
+          schema={{"pattern":"^(\\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}{0,1})$","type":"string","description":"A unique identifier for the merchant associated with the payment method."}}
+        >
+          
+        </SchemaItem><SchemaItem
+          collapsible={false}
+          name={"paymentMethodIdentifier"}
+          required={true}
+          schemaName={"string"}
+          qualifierMessage={"**Possible values:** Value must match regular expression `^(\\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}{0,1})$`"}
+          schema={{"pattern":"^(\\{{0,1}([0-9a-fA-F]){8}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){4}-([0-9a-fA-F]){12}\\}{0,1})$","type":"string","description":"A unique identifier for the payment method to be updated."}}
+        >
+          
+        </SchemaItem>
+      </ul>
+    </details>
+  </TabItem>
+</MimeTabs><div>
+  <div>
+    <ApiTabs
+      label={undefined}
+      id={undefined}
+    >
+      <TabItem
+        label={"200"}
+        value={"200"}
+      >
+        <div>
+          
+          
+          A successful response containing the updated payment method details.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result of the payment method retrieval request, including the status and any relevant messages.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"merchantIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the merchant associated with this payment method.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"customerIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the customer, if available.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"customerReference"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"A reference provided by the merchant to identify the customer associated with the payment method.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={false}
+                        name={"paymentMethodIdentifier"}
+                        required={false}
+                        schemaName={"string"}
+                        qualifierMessage={undefined}
+                        schema={{"type":"string","description":"The unique identifier for the payment method.","nullable":true}}
+                      >
+                        
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                card
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The details of the credit card associated with this payment method.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"cardNumber"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The credit card number. This field is optional and should be stored securely.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"expiryMonth"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","description":"The expiry month of the credit card."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"expiryYear"}
+                              required={false}
+                              schemaName={"int32"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int32","description":"The expiry year of the credit card."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"cardHolderName"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The name of the cardholder as it appears on the credit card.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"cvv"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The card verification value (CVV) for the credit card. This field is optional.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"creditCardBrand"}
+                              required={false}
+                              schemaName={"CreditCardTypes (string)"}
+                              qualifierMessage={"**Possible values:** [`Unknown`, `MasterCard`, `Visa`, `Amex`, `Discover`, `JCB`]"}
+                              schema={{"description":"The brand of the credit card, such as Visa or MasterCard.","enum":["Unknown","MasterCard","Visa","Amex","Discover","JCB"],"type":"string","title":"CreditCardTypes"}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem><SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                billingInformation
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The billing information associated with the payment method, including address details.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"firstLine"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                              schema={{"maxLength":100,"minLength":0,"type":"string","description":"The first line of the billing address.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"secondLine"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                              schema={{"maxLength":100,"minLength":0,"type":"string","description":"The second line of the billing address.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"city"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                              schema={{"maxLength":100,"minLength":0,"type":"string","description":"The city of the billing address.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"region"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `<= 100 characters`"}
+                              schema={{"maxLength":100,"minLength":0,"type":"string","description":"The region or state of the billing address.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"zipCode"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={"**Possible values:** `<= 20 characters`"}
+                              schema={{"maxLength":20,"minLength":0,"type":"string","description":"The postal or ZIP code of the billing address.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"countryAlpha3Code"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"The three-letter country code (ISO Alpha-3) for the billing address."}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"countryId"}
+                              required={false}
+                              schemaName={"int64"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"integer","format":"int64","description":"The unique identifier for the country."}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  },\n  \"merchantIdentifier\": \"string\",\n  \"customerIdentifier\": \"string\",\n  \"customerReference\": \"string\",\n  \"paymentMethodIdentifier\": \"string\",\n  \"card\": {\n    \"cardNumber\": \"string\",\n    \"expiryMonth\": 0,\n    \"expiryYear\": 0,\n    \"cardHolderName\": \"string\",\n    \"cvv\": \"string\",\n    \"creditCardBrand\": \"Unknown\"\n  },\n  \"billingInformation\": {\n    \"firstLine\": \"string\",\n    \"secondLine\": \"string\",\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"zipCode\": \"string\",\n    \"countryAlpha3Code\": \"string\",\n    \"countryId\": 0\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"400"}
+        value={"400"}
+      >
+        <div>
+          
+          
+          The request is invalid or contains incorrect parameters.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result object that contains the outcome and additional details of the API request.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem><TabItem
+        label={"404"}
+        value={"404"}
+      >
+        <div>
+          
+          
+          The specified payment method was not found.
+          
+          
+        </div><div>
+          <MimeTabs
+            className={"openapi-tabs__mime"}
+            schemaType={"response"}
+          >
+            <TabItem
+              label={"application/json"}
+              value={"application/json"}
+            >
+              <SchemaTabs
+                className={"openapi-tabs__schema"}
+              >
+                <TabItem
+                  label={"Schema"}
+                  value={"Schema"}
+                >
+                  <details
+                    style={{}}
+                    className={"openapi-markdown__details response"}
+                    data-collapsed={false}
+                    open={true}
+                  >
+                    <summary
+                      style={{}}
+                      className={"openapi-markdown__details-summary-response"}
+                    >
+                      <strong>
+                        Schema
+                      </strong>
+                    </summary><div
+                      style={{"textAlign":"left","marginLeft":"1rem"}}
+                    >
+                      
+                    </div><ul
+                      style={{"marginLeft":"1rem"}}
+                    >
+                      <SchemaItem
+                        collapsible={true}
+                        className={"schemaItem"}
+                      >
+                        <details
+                          style={{}}
+                          className={"openapi-markdown__details"}
+                        >
+                          <summary
+                            style={{}}
+                          >
+                            <span
+                              className={"openapi-schema__container"}
+                            >
+                              <strong
+                                className={"openapi-schema__property"}
+                              >
+                                result
+                              </strong><span
+                                className={"openapi-schema__name"}
+                              >
+                                 object
+                              </span>
+                            </span>
+                          </summary><div
+                            style={{"marginLeft":"1rem"}}
+                          >
+                            <div
+                              style={{"marginTop":".5rem","marginBottom":".5rem"}}
+                            >
+                              
+                              
+                              The result object that contains the outcome and additional details of the API request.
+                              
+                              
+                            </div><SchemaItem
+                              collapsible={false}
+                              name={"resultType"}
+                              required={false}
+                              schemaName={"ResponseResultType (string)"}
+                              qualifierMessage={"**Possible values:** [`Accepted`, `Declined`, `NotFound`, `ValidationFailed`, `Forbidden`, `Error`]"}
+                              schema={{"description":"The type of result indicating the status of the request.","enum":["Accepted","Declined","NotFound","ValidationFailed","Forbidden","Error"],"type":"string","title":"ResponseResultType"}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"merchantMessage"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A message intended for the merchant, providing additional details about the result of the request.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logIdentifier"}
+                              required={false}
+                              schemaName={"string"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"string","description":"A unique identifier for the server log entry related to this request, useful for troubleshooting.","nullable":true}}
+                            >
+                              
+                            </SchemaItem><SchemaItem
+                              collapsible={false}
+                              name={"logAsError"}
+                              required={false}
+                              schemaName={"boolean"}
+                              qualifierMessage={undefined}
+                              schema={{"type":"boolean","description":"Indicates whether this log entry should be treated as an error.","readOnly":true}}
+                            >
+                              
+                            </SchemaItem>
+                          </div>
+                        </details>
+                      </SchemaItem>
+                    </ul>
+                  </details>
+                </TabItem><TabItem
+                  label={"Example (from schema)"}
+                  value={"Example (from schema)"}
+                >
+                  <ResponseSamples
+                    responseExample={"{\n  \"result\": {\n    \"resultType\": \"Accepted\",\n    \"merchantMessage\": \"string\",\n    \"logIdentifier\": \"string\",\n    \"logAsError\": true\n  }\n}"}
+                    language={"json"}
+                  >
+                    
+                  </ResponseSamples>
+                </TabItem>
+              </SchemaTabs>
+            </TabItem>
+          </MimeTabs>
+        </div>
+      </TabItem>
+    </ApiTabs>
+  </div>
+</div>
+      

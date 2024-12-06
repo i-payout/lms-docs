@@ -1,8 +1,8 @@
 {
-  "websiteName": "WriteDocs Documentation",
-  "description": "Explore our documentation to learn how to create beautiful, scalable developer portals with WriteDocs.",
+  "websiteName": "LINKs Documentation",
+  "description": "LINKs Merchant Services API Documentation.",
   "images": {
-    "logo": "media/logo.png",
+    "logo": "media/logo.svg",
     "favicon": "media/favicon.ico",
     "darkLogo": ""
   },
@@ -10,16 +10,17 @@
     "en"
   ],
   "styles": {
-    "mainColor": "#0029F5",
-    "darkModeMainColor": "#F0F0FF",
-    "navbarColor": "#000621",
-    "navbarDarkModeColor": "#000621",
-    "pagination": false
+    "mainColor": "#0f75bc",
+    "darkModeMainColor": "#0f75bc",
+    "navbarColor": "#FFFFFF",
+    "navbarDarkModeColor": "#000000",
+    "pagination": false,
+    "logoSize": "large"
   },
   "apiFiles": [
-    "example.yml"
+    "links.yml"
   ],
-  "homepage": "/introduction",
+  "homepage": "homepage.html",
   "changelog": false,
   "navbar": [
     {
@@ -39,21 +40,57 @@
         {
           "categoryName": "Getting Started",
           "pages": [
-            "getting-started/introduction",
-            "getting-started/local-development"
+            "getting-started/overview",
+            "getting-started/choose-integration"
           ]
         },
         {
-          "categoryName": "Basics",
+          "categoryName": "API Guides",
           "pages": [
-            "basics/global-settings",
-            "basics/markdown-basics",
+            "api-guides/api-guides",
             {
-              "groupName": "Page Templates",
+              "page": "api-guides/payments/payments",
+              "groupName": "Payments",
               "subpages": [
-                "basics/page-templates/api-introduction",
-                "basics/page-templates/environments",
-                "basics/page-templates/authentication"
+                {
+                  "page": "api-guides/payments/how-to-create-a-payment/how-to-create-a-payment",
+                  "groupName": "How to Create a Payment",
+                  "subpages": [
+                    "api-guides/payments/how-to-create-a-payment/authorize-payment"
+                  ]
+                },
+                "api-guides/payments/how-to-refund-a-payment",
+                "api-guides/payments/how-to-void-a-payment"
+              ]
+            },
+            {
+              "page": "api-guides/payment-methods/payment-methods",
+              "groupName": "Payment Methods",
+              "subpages": [
+                "api-guides/payment-methods/how-to-create-a-payment-method",
+                "api-guides/payment-methods/how-to-retrieve-a-payment-method",
+                "api-guides/payment-methods/how-to-update-a-payment-method",
+                "api-guides/payment-methods/how-to-delete-a-payment-method"
+              ]
+            }
+          ]
+        },
+        {
+          "categoryName": "LINKs UI",
+          "pages": [
+            "links-ui/links-ui",
+            {
+              "page": "links-ui/authorize-module",
+              "groupName": "Authorize Module",
+              "subpages": [
+                "links-ui/authorize-styles-props"
+              ]
+            },
+            {
+              "page": "links-ui/payment-methods-module",
+              "groupName": "Payment Methods Module",
+              "subpages": [
+                "links-ui/payment-methods-styles-props"
               ]
             }
           ]
@@ -64,10 +101,39 @@
       "sidebarRef": "apiReference",
       "categories": [
         {
-          "categoryName": "Example",
+          "categoryName": "Introduction",
           "pages": [
-            "reference/example/get-items",
-            "reference/example/create-item"
+            "reference/overview",
+            "reference/authentication"
+          ]
+        },
+        {
+          "categoryName": "Auth",
+          "pages": [
+            "reference/links/get-dropin-ui-jwt-token"
+          ]
+        },
+        {
+          "categoryName": "Payment",
+          "pages": [
+            "reference/links/create-payment",
+            "reference/links/get-payment",
+            "reference/links/authorize-payment",
+            "reference/links/capture-payment",
+            "reference/links/refund-payment",
+            "reference/links/void-payment"
+          ]
+        },
+        {
+          "categoryName": "Payment Methods",
+          "pages": [
+            "reference/links/create-payment-method",
+            "reference/links/get-payment-method",
+            "reference/links/update-payment-method",
+            "reference/links/delete-payment-method",
+            "reference/links/get-customer-payment-methods-by-id",
+            "reference/links/get-customer-payment-methods-by-reference",
+            "reference/links/update-cardtype-last-4-digits-test"
           ]
         }
       ]

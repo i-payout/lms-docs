@@ -1,0 +1,90 @@
+---
+title: How to Update a Payment Method
+slug: /how-to-update-a-payment-method
+description: Learn how to update a payment method.
+---
+
+On this page, you will find a walk-through guide on updating a payment method and the necessary information to accomplish this task.
+
+## Prerequisites
+
+Before making any call to the LINKs API, you first need a merchant account. Contact our team at Discover@LinksMerchantServices.com to get started.
+
+## Updating a Payment Method
+
+To update a payment method in LINKs, you need to call the [Update a Payment Method endpoint](/reference/links/update-payment-method/). The following are the parameters needed to update the payment method:
+
+| **Field**                  | **Description**                                                        | **Required** |
+|----------------------------|------------------------------------------------------------------------|--------------|
+| `merchantIdentifier`       | The unique identifier of the merchant account.                         | Yes          |
+| `paymentMethodIdentifier`  | The unique identifier of the payment method to update.                 | Yes          |
+| `card`                     | Details about the credit card used for the payment method.             | Yes (if updating card details) |
+| `billingInformation`       | Billing address and contact details associated with the payment method.| No           |
+
+Within the `card` object, the following fields can be updated:
+
+| **Field**         | **Description**                                          | **Required** |
+|-------------------|----------------------------------------------------------|--------------|
+| `cardNumber`      | The new credit card number.                              | No           |
+| `expiryMonth`     | The new expiry month of the credit card (1-12).          | No           |
+| `expiryYear`      | The new expiry year of the credit card (e.g., 2026).     | No           |
+| `cardHolderName`  | The new name of the cardholder as it appears on the credit card. | No           |
+| `cvv`             | The new card verification value (CVV) for the credit card.| No          |
+| `creditCardBrand` | The brand of the credit card, such as Visa or MasterCard. Accepted values: `MasterCard`, `Visa`, `Amex`, `Discover`, `JCB`. | No           |
+
+You can use the code snippet below to make the endpoint call with the required parameters:
+
+```sh
+curl --request POST \
+--url https://testapi.linksmerchantservices.com/api/paymentmethod/update \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--data '{
+  "merchantIdentifier": "<your_merchant_id>",
+  "paymentMethodIdentifier": "<payment_method_id>",
+  "card": {
+    "expiryMonth": 1,
+    "expiryYear": 2026
+  },
+  "billingInformation": {
+    "city": "New City",
+    "zipCode": "54321"
+  }
+}'
+```
+
+<Callout type="info" title="Authentication">
+  Depending on the request, LINKs API offers two forms of authentication:
+  `Basic` and `client token`. Refer to the [Authentication](/authentication)
+  guide to learn more about it.
+</Callout>
+
+In this example, we're updating the expiry date of the credit card and changing the billing city and zip code. This will result in a JSON response exemplified below:
+
+```json
+{
+  "result": {
+    "resultType": "Success",
+    "merchantMessage": "Payment method updated successfully.",
+    "logIdentifier": "uvw12345",
+    "logAsError": false
+  },
+  "merchantIdentifier": "<your_merchant_id>",
+  "paymentMethodIdentifier": "<payment_method_id>",
+  "card": {
+    "cardNumber": "************1111",
+    "expiryMonth": 1,
+    "expiryYear": 2026,
+    "cardHolderName": "John Doe",
+    "creditCardBrand": "Visa"
+  },
+  "billingInformation": {
+    "firstLine": "123 Main St",
+    "secondLine": "Apt 4B",
+    "city": "New City",
+    "region": "Anystate",
+    "zipCode": "54321",
+    "countryAlpha3Code": "USA"
+  }
+}
+```

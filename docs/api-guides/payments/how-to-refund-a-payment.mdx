@@ -1,0 +1,40 @@
+---
+title: How to Refund a Payment
+slug: /how-to-refund-a-payment
+description: Learn how to refund a payment.
+---
+
+This guide explains how to **Refund a Payment**, which allows you to refund a previously captured payment.
+
+## Prerequisites
+
+Before calling the refund endpoint, ensure the following:
+
+- The payment you want to refund has been previously captured.
+- You have the unique payment identifier of the transaction to refund.
+- The refund amount.
+
+## Refund a Payment
+
+To refund a captured payment, you will use the [Refund a Payment](/reference/links/refund-payment) endpoint, adding the following parameters:
+
+Certainly! Below is a consolidated table that includes both **Path Parameters** and **Body Parameters** for the refund endpoint. The table outlines each parameter's name, location (whether it's a path or body parameter), whether it is required, and a detailed description.
+
+| **Parameter**                | **Location** | **Required** | **Description**                                                                   |
+| ---------------------------- | ------------ | ------------ | --------------------------------------------------------------------------------- |
+| `payment_identifier`         | Path         | Yes          | The unique identifier of the payment to be refunded.                              |
+| `refundedAlreadyAtProcessor` | Body         | No           | Indicates whether the refund has already been processed by the payment processor. |
+| `amount`                     | Body         | No           | The amount to be refunded. Must be a numeric value (double format).               |
+
+Below you find an example request to refund a payment:
+
+```sh
+curl --request POST \
+--url https://testapi.linksmerchantservices.com/api/payments/<payment_identifier>/refund \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--data '{
+  "refundedAlreadyAtProcessor": false,
+  "amount": 50.00
+}'
+```

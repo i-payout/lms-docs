@@ -1,0 +1,105 @@
+---
+title: How to Create a Payment Method
+slug: /how-to-create-a-payment-method
+description: Learn how to create a payment method.
+---
+
+On this page, you will find a walk-through guide on creating a payment method and the necessary information to accomplish this task.
+
+## Prerequisites
+
+Before making any call to the LINKs API, you first need a merchant account. Contact our team at Discover@LinksMerchantServices.com to get started.
+
+## Creating a Payment Method
+
+To create a payment method in LINKs, you need to call the [Create a New Payment Method endpoint](/reference/links/create-payment-method/). The following are the parameters needed to initiate the payment method creation:
+
+| **Field**              | **Description**                                                                                      | **Required** |
+|------------------------|------------------------------------------------------------------------------------------------------|--------------|
+| `merchantIdentifier`   | A unique identifier for the merchant, used to associate the payment method with the correct merchant account. | Yes          |
+| `customerIdentifier`   | A unique identifier for the customer. This is optional and can be used to associate the payment method with a specific customer. | No           |
+| `customerReference`    | An optional reference provided by the merchant to identify the customer.                             | No           |
+| `card`                 | Details about the credit card used for the payment method.                                           | Yes          |
+| `billingInformation`   | Billing address and contact details associated with the payment method.                              | No           |
+
+Within the `card` object, the following fields are used:
+
+| **Field**          | **Description**                                   | **Required** |
+|--------------------|---------------------------------------------------|--------------|
+| `cardNumber`       | The credit card number.                           | Yes          |
+| `expiryMonth`      | The expiry month of the credit card (1-12).       | Yes          |
+| `expiryYear`       | The expiry year of the credit card (e.g., 2025).  | Yes          |
+| `cardHolderName`   | The name of the cardholder as it appears on the credit card. | No           |
+| `cvv`              | The card verification value (CVV) for the credit card. | No           |
+| `creditCardBrand`  | The brand of the credit card, such as Visa or MasterCard. Accepted values: `MasterCard`, `Visa`, `Amex`, `Discover`, `JCB`. | Yes          |
+
+You can use the code snippet below to make the endpoint call with the required parameters:
+
+```sh
+curl --request POST \
+--url https://testapi.linksmerchantservices.com/api/paymentmethods \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--data '{
+  "merchantIdentifier": "<your_merchant_id>",
+  "customerIdentifier": "<optional_customer_id>",
+  "customerReference": "<optional_customer_reference>",
+  "card": {
+    "cardNumber": "4111111111111111",
+    "expiryMonth": 12,
+    "expiryYear": 2025,
+    "cardHolderName": "John Doe",
+    "cvv": "123",
+    "creditCardBrand": "Visa"
+  },
+  "billingInformation": {
+    "firstLine": "123 Main St",
+    "secondLine": "Apt 4B",
+    "city": "Anytown",
+    "region": "Anystate",
+    "zipCode": "12345",
+    "countryAlpha3Code": "USA"
+  }
+}'
+```
+
+<Callout type="info" title="Authentication">
+  Depending on the request, LINKs API offers two forms of authentication,
+  `Basic` and `client token`. Refer to the [Authentication](/authentication)
+  guide to learn more about it.
+</Callout>
+
+This will result in a JSON response exemplified below:
+
+```json
+{
+  "result": {
+    "resultType": "Success",
+    "merchantMessage": "Payment method created successfully.",
+    "logIdentifier": "abc12345",
+    "logAsError": false
+  },
+  "merchantIdentifier": "<your_merchant_id>",
+  "customerIdentifier": "<optional_customer_id>",
+  "customerReference": "<optional_customer_reference>",
+  "paymentMethodIdentifier": "pm_123456789",
+  "card": {
+    "cardNumber": "************1111",
+    "expiryMonth": 12,
+    "expiryYear": 2025,
+    "cardHolderName": "John Doe",
+    "creditCardBrand": "Visa"
+  },
+  "billingInformation": {
+    "firstLine": "123 Main St",
+    "secondLine": "Apt 4B",
+    "city": "Anytown",
+    "region": "Anystate",
+    "zipCode": "12345",
+    "countryAlpha3Code": "USA",
+    "countryId": 840
+  }
+}
+```
+
+With the `paymentMethodIdentifier` found in the response, you can either [retrieve](/how-to-retrieve-a-payment-method), [update](/how-to-update-a-payment-method) or [delete](/how-to-delete-a-payment-method) the newly created payment method.

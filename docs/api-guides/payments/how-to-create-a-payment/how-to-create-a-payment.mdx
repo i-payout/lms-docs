@@ -1,0 +1,113 @@
+---
+title: How to Create a Payment
+slug: /how-to-create-a-payment
+description: Learn how to create a payment.
+---
+
+On this page, you will find a walk-through guide on creating a payment and the necessary information to accomplish such a task.
+
+## Prerequisites
+
+Before making any call to LINKs API, you first need a merchant account. Contact our team at Discover@LinksMerchantServices.com to get started.
+
+## Creating a Payment
+
+To create a payment, you will need to follow the steps below:
+
+1. [Create a New Payment](#1-create-a-new-payment)
+2. [Authorize the Created Payment](#2-authorize-the-created-payment)
+3. [Check Payment Status](#3-check-payment-status-optional) (Optional)
+4. [Capture the Payment](#4-capture-the-payment)
+
+<Callout type="info" title="Authentication">
+  Depending on the request, LINKs API offers two forms of authentication,
+  `Basic` and `client token`. Refer to the [Authentication](/authentication)
+  guide to learn more about it.
+</Callout>
+
+### 1. Create a New Payment
+
+To create a payment in LINKs, you need to call the [Create a New Payment endpoint](/reference/links/create-payment/). The following are the parameters needed to start the payment creation:
+
+| **Field**            | **Description**                                                                                 | **Required** |
+| -------------------- | ----------------------------------------------------------------------------------------------- | ------------ |
+| `merchantIdentifier` | Unique identifier for the merchant account.                                                     | Yes          |
+| `currencyCode`       | Currency code for the transaction in [ISO 4217 format](https://en.wikipedia.org/wiki/ISO_4217). | Yes          |
+| `amount`             | The transaction amount; must be a positive number (minimum 0.01).                               | Yes          |
+| `customerIdentifier` | Identifier for the customer. Used to link transactions to customer profiles.                    | No           |
+| `customerReference`  | Reference identifier for the customer.                                                          | No           |
+| `merchantOrderId`    | A unique identifier for the order, assigned by the merchant.                                    | Yes          |
+
+You can use the code snippet below to make the endpoint call with the required parameters:
+
+```sh
+curl --request POST \
+--url https://testapi.linksmerchantservices.com/api/payments \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--data '{
+  "merchantIdentifier": "<your_merchant_id>",
+  "currencyCode": "USD",
+  "amount": 10.50,
+  "merchantOrderId": "order_789"
+}'
+```
+
+The response JSON will contain a `paymentIdentifier`, needed in [Step 2](#2-authorize-the-created-payment)
+
+### 2. Authorize the Created Payment
+
+After the payment is created, with the payment identifier in hand, you need to authorize the payment. To do this, call the [Authorize a Payment](/reference/links/authorize-payment) endpoint, adding the payment ID as path parameter of the request, as exemplified below:
+
+```sh
+curl --request POST \
+--url 'https://testapi.linksmerchantservices.com/api/payments/<PAYMENT_IDENTIFIER>/authorize' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--data '{
+  "paymentMethodIdentifier": "string",
+  "paymentMethodType": "Unknown",
+  "autoCapture": false
+}'
+```
+
+<Callout type="info" title="Authorize payment details">
+  Refer to the [Authorize Payment](/authorize-payment) guide to find details
+  about the Authorize method.
+</Callout>
+
+### 3. Check Payment Status (Optional)
+
+Normally, at any point after creating a payment, you can use the [Retrieve Payment](/reference/links/get-payment) endpoint to validate the payment's current status.
+
+```sh
+curl --request GET \
+--url 'https://testapi.linksmerchantservices.com/api/payments/<PAYMENT_IDENTIFIER>' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+```
+
+This call will return a JSON with details of the payment. You can check the status with the `paymentStatus` parameter.
+
+### 4. Capture the Payment
+
+In this guide example, you still need to capture the payment, as in the authorize endpoint call, the `autoCapture` flag was set to `false`. To perform this step, you need to call the [Capture a Payment](/reference/links/capture-payment) endpoint, adding the payment's ID as path parameter of this request:
+
+```sh
+curl --request POST \
+--url 'https://testapi.linksmerchantservices.com/api/payments/<PAYMENT_IDENTIFIER>/capture' \
+--header 'Accept: application/json' \
+--header 'Authorization: Basic <your_base64_encoded_credentials>' \
+```
+
+<Callout type="warning" title="Capturing payments">
+  It's important to note that only authorized payments can be captured.
+</Callout>
+
+{/* <Callout type="info" title="Capture payment details">
+  Refer to the [Capture the Payment](/capture-payment) guide to find details
+  about the Capture method.
+</Callout> */}
+
+This will capture the payment that was previously authorized, finalizing the transaction by transfering funds from the customer to the merchant and completing this guide.

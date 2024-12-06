@@ -1,0 +1,185 @@
+---
+title: Authorize a Payment
+slug: /authorize-payment
+description: Learn how to authorize a payment.
+---
+
+LINKs API Authorize Payment endpoint can be used in a few different ways. It allows you to set the payment method, along with the needed data for the selected method. You can also define a `auto-capture` flag, allowing you to automatically capture the payment, skipping the need to make a call to the capture endpoint. This page presents you the different possibilities and parameters you can add to the authorization request.
+
+## Request Parameters
+
+Certainly! Here's the updated table with detailed descriptions for each field:
+
+| **Field Name**                               | **Required** | **Description**                                                                                                                                     |
+| -------------------------------------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paymentMethodIdentifier`                    | No           | A unique identifier for the payment method.                                                                                                         |
+| `paymentMethodType`                          | Yes          | Specifies the type of payment method being used. Must be one of the following values: <br/>• `"Unknown"`<br/>• `"CreditCard"`<br/>• `"BankAccount"` |
+| [`autoCapture`](#auto-capture-a-payment)     | Yes          | A boolean flag indicating whether the payment should be captured automatically upon authorization.                                                  |
+| [`card`](#card)                              | No           | Contains card-related information necessary for processing credit card payments.                                                                    |
+| [`billingInformation`](#billing-information) | No           | Holds the billing details associated with the payment method.                                                                                       |
+| [`payment`](#payment)                        | No           | Includes specific payment-related fields required for authorization.                                                                                |
+| [`customer`](#customer)                      | No           | Stores information about the customer making the payment.                                                                                           |
+| [`device`](#device)                          | No           | Contains details about the device used to initiate the payment.                                                                                     |
+
+## Auto Capture a Payment
+
+LINKs allows you to auto capture payments when authorizing them by setting the `autoCapture` flag to `true` in the request body. This enables immediate payment capture upon authorization, streamlining the payment process and eliminating the need for separate capture requests.
+
+Here is an example of how to include the `autoCapture` flag in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": true
+  // ... other fields
+}
+```
+
+## Card
+
+The `card` object contains the necessary credit card details required for authorizing a payment. This object should be included in the authorization request when the `paymentMethodType` is set to `"CreditCard"`. Providing accurate and complete card information ensures a smooth and secure payment process.
+
+| **Field Name**    | **Required** | **Description**                                       |
+| ----------------- | ------------ | ----------------------------------------------------- |
+| `cardNumber`      | Yes          | The credit card number used for the authorization.    |
+| `cardExpiryMonth` | Yes          | The month when the card expires.                      |
+| `cardExpiryYear`  | Yes          | The year when the card expires.                       |
+| `cardHolderName`  | Yes          | The name of the cardholder as it appears on the card. |
+| `cardCvv`         | No           | The CVV number for the card.                          |
+
+Here is an example of how to include the `card` object in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": false,
+  "card": {
+    "cardNumber": "4111111111111111",
+    "cardExpiryMonth": 12,
+    "cardExpiryYear": 2025,
+    "cardHolderName": "John Doe",
+    "cardCvv": "123"
+  }
+  // ... other fields
+}
+```
+
+## Billing Information
+
+The `billingInformation` object contains the billing address details associated with the payment method. This information is used to verify the billing address of the customer and can help reduce the risk of fraudulent transactions.
+
+| **Field Name**      | **Required** | **Description**                                                                                                          |
+| ------------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `firstLine`         | No           | The first line of the billing address. _(Maximum 100 characters)_                                                        |
+| `secondLine`        | No           | The second line of the billing address. _(Maximum 100 characters)_                                                       |
+| `city`              | No           | The city of the billing address. _(Maximum 100 characters)_                                                              |
+| `region`            | No           | The region or state of the billing address. _(Maximum 100 characters)_                                                   |
+| `zipCode`           | No           | The postal or ZIP code of the billing address. _(Maximum 20 characters)_                                                 |
+| `countryAlpha3Code` | Yes          | The three-letter country code ([ISO Alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)) for the billing address. |
+
+Here is an example of how to include the `billingInformation` object in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": true,
+  "billingInformation": {
+    "firstLine": "123 Main Street",
+    "secondLine": "Apt 4B",
+    "city": "New York",
+    "region": "NY",
+    "zipCode": "10001",
+    "countryAlpha3Code": "USA"
+  }
+  // ... other fields
+}
+```
+
+## Payment
+
+The `payment` object contains payment-specific details required for authorizing a transaction, such as the type, mode, source, and references to previous transactions. This object should be included in the authorization request when you need to specify these payment details to tailor the payment process to specific needs.
+
+| **Field Name**          | **Required** | **Description**                                                                                                                                                                     |
+| ----------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paymentType`           | No           | Specifies the type of payment being authorized. Must be one of the following values: <br/>• `Unknown` <br/>• `Regular` <br/>• `Recurring` <br/>• `Installment` <br/>• `Unscheduled` |
+| `paymentMode`           | No           | Defines the mode of the payment. Must be one of the following values: <br/>• `Unknown` <br/>• `Initial` <br/>• `Repeated`                                                           |
+| `paymentSource`         | No           | Indicates the source of the payment. Must be one of the following values: <br/>• `Unknown` <br/>• `CIT` <br/>• `MIT`                                                                |
+| `previousTransactionId` | No           | The ID of the previous transaction, if applicable. This is useful for linking related transactions or referencing past payments.                                                    |
+
+Here is an example of how to include the `payment` object in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": true,
+  "payment": {
+    "paymentType": "Recurring",
+    "paymentMode": "Initial",
+    "paymentSource": "CIT",
+    "previousTransactionId": "abc123xyz"
+  }
+  // ... other fields
+}
+```
+
+## Customer
+
+The `customer` object contains detailed information about the customer making the payment. This can be used to identify the customer, enhancing security, and providing personalized experiences.
+
+| **Field Name**              | **Required** | **Description**                                   |
+| --------------------------- | ------------ | ------------------------------------------------- |
+| `customerId`                | No           | The unique identifier for the customer.           |
+| `customerPhoneCountryCode`  | No           | The country code of the customer's phone number.  |
+| `customerPhoneNumber`       | No           | The customer's phone number.                      |
+| `customerMobileCountryCode` | No           | The country code of the customer's mobile number. |
+| `customerMobileNumber`      | No           | The customer's mobile number.                     |
+| `customerEmail`             | No           | The email address of the customer.                |
+| `customerIpAddress`         | No           | The IP address of the customer.                   |
+| `merchantName`              | No           | The name of the merchant making the request.      |
+
+Here is an example of how to include the `customer` object in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": true,
+  "customer": {
+    "customerId": "cust_78910",
+    "customerPhoneCountryCode": "+1",
+    "customerPhoneNumber": "5551234567",
+    "customerMobileCountryCode": "+1",
+    "customerMobileNumber": "5557654321",
+    "customerEmail": "john.doe@example.com",
+    "customerIpAddress": "192.168.1.100",
+    "merchantName": "Example Merchant"
+  }
+  // ... other fields
+}
+```
+
+Certainly! Below is the **Device** section tailored to seamlessly integrate into your existing documentation. It includes a clear explanation of the `device` object, a detailed table of its fields, comprehensive field definitions, guidance on when to use it, and an example of how to include it in your authorization request.
+
+---
+
+## Device
+
+The `device` object contains information about the device used to initiate the payment. Including device-related data enhances security by verifying the origin of the transaction and aids in fraud detection.
+
+| **Field Name**    | **Required** | **Description**                                       |
+| ----------------- | ------------ | ----------------------------------------------------- |
+| `browserDeviceId` | No           | The ID of the browser device used in the transaction. |
+| `mobileDeviceId`  | No           | The ID of the mobile device used in the transaction.  |
+
+Here is an example of how to include the `device` object in your authorization request:
+
+```json
+{
+  "paymentMethodType": "CreditCard",
+  "autoCapture": true,
+  "device": {
+    "browserDeviceId": "browser-uuid-12345",
+    "mobileDeviceId": "mobile-uuid-67890"
+  }
+  // ... other fields
+}
+```
