@@ -51,15 +51,15 @@ curl --request POST \
     "cardHolderName": "John Doe",
     "cvv": "123",
     "creditCardBrand": "Visa"
-  },
-  "billingInformation": {
-    "firstLine": "123 Main St",
-    "secondLine": "Apt 4B",
-    "city": "Anytown",
-    "region": "Anystate",
-    "zipCode": "12345",
-    "countryAlpha3Code": "USA"
   }
+  "billingInformation": {
+    "firstLine": "540 NE 4th st",
+    "secondLine": "Second Floor",
+    "city": "FLL",
+    "region": "FL",
+    "zipCode": "33091",
+    "countryAlpha3Code": "USA"
+  },
 }'
 ```
 
@@ -73,31 +73,32 @@ This will result in a JSON response exemplified below:
 
 ```json
 {
-  "result": {
-    "resultType": "Success",
-    "merchantMessage": "Payment method created successfully.",
-    "logIdentifier": "abc12345",
-    "logAsError": false
-  },
-  "merchantIdentifier": "<your_merchant_id>",
-  "customerIdentifier": "<optional_customer_id>",
-  "customerReference": "<optional_customer_reference>",
-  "paymentMethodIdentifier": "pm_123456789",
+  "merchantIdentifier": "af9a9d3e-3d3b-4f7d-9fde-4169f1abedd5",
+  "customerIdentifier": "c8ee51a9-f6c0-4108-a7c1-c8a821ffce2c",
+  "customerReference": "154564559",
+  "paymentMethodIdentifier": "583c748c-beea-4dc1-808a-2f34309e62f5",
   "card": {
-    "cardNumber": "************1111",
+    "cardNumber": "4111111111111111",
     "expiryMonth": 12,
     "expiryYear": 2025,
     "cardHolderName": "John Doe",
+    "cvv": "123",
     "creditCardBrand": "Visa"
   },
   "billingInformation": {
-    "firstLine": "123 Main St",
-    "secondLine": "Apt 4B",
-    "city": "Anytown",
-    "region": "Anystate",
-    "zipCode": "12345",
+    "firstLine": "540 NE 4th st",
+    "secondLine": "Second Floor",
+    "city": "FLL",
+    "region": "FL",
+    "zipCode": "33091",
     "countryAlpha3Code": "USA",
-    "countryId": 840
+    "countryId": 1
+  },
+  "result": {
+    "resultType": "Accepted",
+    "merchantMessage": "",
+    "logIdentifier": "60554180-07ed-4cd0-92ca-3b5ac79c1fb3",
+    "logAsError": false
   }
 }
 ```

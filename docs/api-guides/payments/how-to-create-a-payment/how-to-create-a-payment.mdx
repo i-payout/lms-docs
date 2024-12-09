@@ -53,18 +53,20 @@ curl --request POST \
 }'
 ```
 
-The response JSON will contain a `paymentIdentifier`, needed in [Step 2](#2-authorize-the-created-payment)
+The response JSON will contain a `paymentIdentifier`, and a `token`, needed in [Step 2](#2-authorize-the-created-payment)
 
 ### 2. Authorize the Created Payment
 
-After the payment is created, with the payment identifier in hand, you need to authorize the payment. To do this, call the [Authorize a Payment](/reference/links/authorize-payment) endpoint, adding the payment ID as path parameter of the request, as exemplified below:
+With a payment created, you'll need the `paymentIdentifier` and `token`. The payment identifier will be used as path parameter in the [Authorize a Payment](/reference/links/authorize-payment) endpoint. While the token is required to authorize this request.
+
+Add the token to the Authorization header with the `X-Api-Key` prefix as exemplified below:
 
 ```sh
 curl --request POST \
 --url 'https://testapi.linksmerchantservices.com/api/payments/<PAYMENT_IDENTIFIER>/authorize' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
---header 'Authorization: Basic <your_base64_encoded_credentials>' \
+--header 'Authorization: X-Api-Key <TOKEN_FROM_STEP_1>' \
 --data '{
   "paymentMethodIdentifier": "string",
   "paymentMethodType": "Unknown",
